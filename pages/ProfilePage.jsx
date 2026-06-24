@@ -110,39 +110,39 @@ export default function ProfilePage({ onNavigate, onEditPost }) {
   // 主页面
   return (
     <div className="profile-page">
-      {/* 个人信息头部（左右两栏） */}
+      {/* 个人信息 + 快捷功能（合并卡片） */}
       <div className="profile-header">
-        <div className="profile-left-col">
-          <div
-            className="profile-avatar"
-            style={profile.avatarGradient ? { background: profile.avatarGradient } : undefined}
-          >
-            {profile.avatar}
+        <div className="profile-info-row">
+          <div className="profile-left-col">
+            <div
+              className="profile-avatar"
+              style={profile.avatarGradient ? { background: profile.avatarGradient } : undefined}
+            >
+              {profile.avatar}
+            </div>
+            <div className="profile-name">{profile.name}</div>
           </div>
-          <div className="profile-name">{profile.name}</div>
-        </div>
-        <div className="profile-right-col">
-          <div className="profile-bio">{profile.bio}</div>
-          <div className="profile-stats">
-            <div className="profile-stat">
-              <div className="profile-stat-value">{profile.postCount}</div>
-              <div className="profile-stat-label">帖子</div>
-            </div>
-            <div className="profile-stat">
-              <div className="profile-stat-value">{profile.followerCount}</div>
-              <div className="profile-stat-label">粉丝</div>
-            </div>
-            <div className="profile-stat">
-              <div className="profile-stat-value">{profile.followingCount}</div>
-              <div className="profile-stat-label">关注</div>
+          <div className="profile-right-col">
+            <div className="profile-bio">{profile.bio}</div>
+            <div className="profile-stats">
+              <div className="profile-stat">
+                <div className="profile-stat-value">{profile.postCount}</div>
+                <div className="profile-stat-label">帖子</div>
+              </div>
+              <div className="profile-stat">
+                <div className="profile-stat-value">{profile.followerCount}</div>
+                <div className="profile-stat-label">粉丝</div>
+              </div>
+              <div className="profile-stat">
+                <div className="profile-stat-value">{profile.followingCount}</div>
+                <div className="profile-stat-label">关注</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* 快捷功能 */}
-      <div className="profile-section">
-        <div className="profile-section-title">快捷功能</div>
+        <div className="profile-divider" />
+
         <div className="profile-quick-actions">
           {quickActions.map((action, idx) => (
             <div
