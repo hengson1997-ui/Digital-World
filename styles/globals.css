@@ -1837,3 +1837,59 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
     gap: 16px;
   }
 }
+
+/* ========== 帖子编辑：Profile 列表内"编辑"按钮 ========== */
+.profile-post-item {
+  position: relative;
+}
+
+.profile-post-edit-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  color: #007aff;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.profile-post-edit-btn:hover {
+  background: #fff;
+}
+
+.profile-post-edit-btn:active {
+  transform: scale(0.96);
+  background: #e5f1ff;
+}
+
+.profile-post-edit-btn svg {
+  flex-shrink: 0;
+}
+
+/* ========== PostCard "已编辑" 标记 ========== */
+.post-edited-tag {
+  color: #8e8e93;
+  font-size: 12px;
+  margin-left: 2px;
+}
+
+/* ========== 编辑页：超期锁定提示 ========== */
+.edit-locked-banner {
+  margin: 12px 16px 0;
+  padding: 10px 14px;
+  background: #fff4e5;
+  color: #b35900;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+

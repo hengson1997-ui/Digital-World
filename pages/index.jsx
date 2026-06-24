@@ -7,14 +7,28 @@ import HomePage from './HomePage';
 import SearchPage from './SearchPage';
 import MessagesPage from './MessagesPage';
 import PostPage from './PostPage';
+import EditPostPage from './EditPostPage';
 import ProfilePage from './ProfilePage';
 
 export default function Home() {
   const [activePage, setActivePage] = useState('home');
   const [topTab, setTopTab] = useState('recommend');
+  const [editingPostId, setEditingPostId] = useState(null);
 
   const handlePageChange = useCallback(page => {
     setActivePage(page);
+    // 切换到非 edit 页面时清空 editingPostId
+    if (page !== 'edit' && page !== 'profile') {
+      setEditingPostId(null);
+    }
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, []);
+
+  const handleEditPost = useCallback((postId) => {
+    setEditingPostId(postId);
+    setActivePage('edit');
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -36,10 +50,18 @@ export default function Home() {
         return <SearchPage />;
       case 'post':
         return <PostPage onPostSuccess={() => handlePageChange('home')} />;
+      case 'edit':
+        return (
+          <EditPostPage
+            postId={editingPostId}
+            onBack={() => handlePageChange('profile')}
+            onSuccess={() => { setEditingPostId(null); handlePageChange('profile'); }}
+          />
+        );
       case 'messages':
         return <MessagesPage />;
       case 'profile':
-        return <ProfilePage onNavigate={handlePageChange} />;
+        return <ProfilePage onNavigate={handlePageChange} onEditPost={handleEditPost} />;
       default:
         return null;
     }

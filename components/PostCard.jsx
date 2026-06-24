@@ -42,7 +42,9 @@ export default function PostCard({ post, onLike }) {
     likes = 0,
     comments: commentCount = 0,
     liked = false,
-    bookmarked: initialBookmarked = false
+    bookmarked: initialBookmarked = false,
+    createdAt,
+    updatedAt
   } = post;
 
   const [bookmarked, setBookmarked] = useState(initialBookmarked);
@@ -231,6 +233,9 @@ export default function PostCard({ post, onLike }) {
     if (diff < 86400000) return Math.floor(diff / 3600000) + '小时前';
     return d.toLocaleDateString('zh-CN');
   };
+
+  // 仅在 updatedAt 晚于 createdAt 时显示"已编辑"
+  const isEdited = createdAt && updatedAt && new Date(updatedAt).getTime() - new Date(createdAt).getTime() > 1000;
 
   return (
     <div className="post-card">
