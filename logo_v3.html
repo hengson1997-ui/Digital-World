@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数界 Logo · 界中光 v3</title>
+<style>
+  :root { --blue: #2E9BFF; --blue-light: #7FD4FF; --ink: #0A0A0B; }
+  * { box-sizing: border-box; }
+  body {
+    background: #f2f2f7;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+    margin: 0; padding: 48px 20px 80px; color: #1c1c1e;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .head { text-align: center; margin-bottom: 36px; }
+  .head h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin: 0 0 8px; }
+  .head p { font-size: 14px; color: #8e8e93; margin: 0; }
+  .grid {
+    display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;
+    max-width: 1080px; margin-bottom: 36px;
+  }
+  .card {
+    background: #fff; border-radius: 28px; padding: 32px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+  .card .label { font-size: 13px; color: #8e8e93; font-weight: 500; }
+  .card.dark { background: #0A0A0B; }
+  .card.dark .label { color: #6b6b70; }
+  .swatches { display: flex; gap: 14px; margin-top: 8px; }
+  .sw { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #8e8e93; }
+  .sw i { width: 44px; height: 44px; border-radius: 12px; display: block; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06); }
+  .btn {
+    padding: 14px 34px; background: var(--ink); color: #fff; border: none;
+    border-radius: 100px; font-size: 15px; font-weight: 600; cursor: pointer;
+    font-family: inherit; transition: transform .15s ease;
+  }
+  .btn:hover { transform: scale(1.03); }
+  .row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .note {
+    max-width: 620px; margin-top: 28px; padding: 18px 22px;
+    background: rgba(46,155,255,0.08); border: 1px solid rgba(46,155,255,0.18);
+    border-radius: 16px; font-size: 13.5px; line-height: 1.7; color: #555;
+  }
+  .iconset { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; justify-content: center; }
+  .iconset .ic { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; color: #8e8e93; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>数界 · 界中光</h1>
+    <p>黑色界框 · 蓝色光芒自界面投射而出</p>
+  </div>
+
+  <!-- 主 Logo -->
+  <div class="grid">
+    <div class="card">
+      <div id="main-light"></div>
+      <div class="label">主标识 · 浅色背景</div>
+    </div>
+    <div class="card" style="background:#e9e9ee;">
+      <div id="main-dark"></div>
+      <div class="label">主标识 · 灰底</div>
+    </div>
+    <div class="card">
+      <div id="main-mono"></div>
+      <div class="label">单色线稿 · 极简</div>
+    </div>
+  </div>
+
+  <!-- 横版组合 -->
+  <div class="grid">
+    <div class="card" style="flex-direction: row; gap: 28px; padding: 40px 48px;">
+      <div id="lockup"></div>
+    </div>
+  </div>
+
+  <!-- App Icons -->
+  <div class="card" style="width: 100%; max-width: 1000px;">
+    <div class="label" style="align-self:flex-start; font-size:14px; color:#1c1c1e; font-weight:700; margin-bottom:8px;">App Icon 适配</div>
+    <div class="iconset">
+      <div class="ic"><div id="app-dark"></div><span>标准</span></div>
+      <div class="ic"><div id="app-blue"></div><span>圆角网格对齐</span></div>
+      <div class="ic"><div id="app-white"></div><span>留白测试</span></div>
+      <div class="ic"><div id="app-sm" ></div><span>小尺寸 60px</span></div>
+      <div class="ic"><div id="app-xs"></div><span>超小 40px</span></div>
+    </div>
+  </div>
+
+  <!-- 配色 -->
+  <div class="card" style="margin-top:24px;">
+    <div class="label" style="align-self:flex-start; font-size:14px; color:#1c1c1e; font-weight:700;">配色规范</div>
+    <div class="swatches">
+      <div class="sw"><i style="background:#0A0A0B"></i>界框黑<br>#0A0A0B</div>
+      <div class="sw"><i style="background:#2E9BFF"></i>光芒蓝<br>#2E9BFF</div>
+      <div class="sw"><i style="background:#7FD4FF"></i>高光蓝<br>#7FD4FF</div>
+      <div class="sw"><i style="background:#f2f2f7"></i>背景灰<br>#F2F2F7</div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:36px;">
+    <button class="btn" onclick="downloadMain()">下载主标识 PNG (1024)</button>
+    <button class="btn" onclick="downloadIcon()" style="background:#2E9BFF;">下载 App Icon PNG (1024)</button>
+    <button class="btn" onclick="downloadSVG()" style="background:#fff;color:#0A0A0B;box-shadow:inset 0 0 0 1.5px #d1d1d6;">下载主标识 SVG</button>
+  </div>
+
+  <div class="note">
+    <b>设计释义</b>：实心黑色圆角方块是标识主体，框内偏右上是一扇白色窗口（「界」——数字世界的窗口）。一束强烈的蓝色光从窗口左缘射出，穿过黑色块面投向左下方，象征数字世界的信息与交流穿透界面、照进现实。黑、白、蓝三色克制对比，光是唯一的视觉焦点，天然适配 iOS 圆角图标规范。
+  </div>
+
+<script>
+/* ============================================================
+   核心：生成"界中光"Logo 的 SVG 字符串
+   size: 视觉尺寸; opts: { bg, frame, mono }
+   ============================================================ */
+function logoSVG(size, opts = {}) {
+  const { mono = false } = opts;
+
+  const S = 1000;
+  const uid = 'g' + Math.random().toString(36).slice(2, 8);
+  const BLUE = '#2E9BFF';
+  const BLUEL = '#7FD4FF';
+
+  // 实心黑色圆角方块（整个标识主体）
+  const bx = S * 0.10, by = S * 0.10;
+  const bw = S * 0.80;
+  const br = bw * 0.235;
+
+  // 白色窗口：与整体等比缩小（正方形 + 等比圆角）
+  const ww = bw * 0.40;
+  const wh = ww;                   // 正方形，与主体同形
+  const wx = bx + bw * 0.44;
+  const wy = by + bw * 0.18;
+  const wr = ww * 0.235;           // 圆角比例与主体一致
+
+  // 光源：白窗左下角（参考红箭头交汇点）
+  const ox = wx;
+  const oy = wy + wh;
+
+  // 锥形光束：顶点在光源，一边朝左、一边朝下；远端用圆弧收口，边界过渡更自然
+  const beamPath =
+    `M ${ox} ${oy} ` +
+    `L ${bx - bw*0.05} ${by + bw*0.60} ` +                      // 上边 → 朝左
+    `Q ${bx + bw*0.02} ${by + bw*1.10} ` +                      // 远端外凸控制点
+    `  ${bx + bw*0.32} ${by + bw*1.07} ` +                      // 下边 → 朝下
+    `Z`;
+
+  // 单色线稿版
+  if (mono) {
+    return `
+<svg width="${size}" height="${size}" viewBox="0 0 ${S} ${S}" xmlns="http://www.w3.org/2000/svg">
+  <rect x="${bx}" y="${by}" width="${bw}" height="${bw}" rx="${br}" fill="none" stroke="#0A0A0B" stroke-width="${bw*0.07}"/>
+  <rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" rx="${wr}" fill="none" stroke="#0A0A0B" stroke-width="${bw*0.045}"/>
+  <path d="${beamPath}" fill="none" stroke="#0A0A0B" stroke-width="${bw*0.03}" stroke-linejoin="round"/>
+</svg>`;
+  }
+
+  return `
+<svg width="${size}" height="${size}" viewBox="0 0 ${S} ${S}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="${uid}-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d1d20"/>
+      <stop offset="55%" stop-color="#0a0a0b"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="${uid}-beam" x1="${ox}" y1="${oy}" x2="${bx + bw*0.12}" y2="${by + bw*0.84}" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="12%" stop-color="${BLUEL}" stop-opacity="0.98"/>
+      <stop offset="45%" stop-color="${BLUE}" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="${BLUE}" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="${uid}-ray" x1="${ox}" y1="${oy}" x2="${bx + bw*0.12}" y2="${by + bw*0.84}" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="${BLUEL}" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="${BLUE}" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="${uid}-burst" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="${BLUEL}"/>
+      <stop offset="100%" stop-color="${BLUE}" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="${uid}-seam" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="38%" stop-color="${BLUEL}" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="${BLUE}" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="${uid}-blur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="${bw*0.03}"/>
+    </filter>
+    <filter id="${uid}-blurBig" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="${bw*0.06}"/>
+    </filter>
+    <clipPath id="${uid}-clip">
+      <rect x="${bx}" y="${by}" width="${bw}" height="${bw}" rx="${br}"/>
+    </clipPath>
+  </defs>
+
+  <!-- 黑色实心主体 -->
+  <rect x="${bx}" y="${by}" width="${bw}" height="${bw}" rx="${br}" fill="url(#${uid}-body)"/>
+
+  <!-- 黑块内部的光（裁切在主体内） -->
+  <g clip-path="url(#${uid}-clip)">
+    <!-- 光锥外发光（强、宽） -->
+    <path d="${beamPath}" fill="url(#${uid}-beam)" filter="url(#${uid}-blurBig)" opacity="0.95"/>
+    <!-- 光锥主体 -->
+    <path d="${beamPath}" fill="url(#${uid}-beam)" filter="url(#${uid}-blur)"/>
+    <!-- 从顶点放射的亮线（在左↘下之间扇形发散） -->
+    <g filter="url(#${uid}-blur)">
+      <line x1="${ox}" y1="${oy}" x2="${bx - bw*0.03}" y2="${by + bw*0.64}" stroke="url(#${uid}-ray)" stroke-width="${bw*0.016}" stroke-linecap="round"/>
+      <line x1="${ox}" y1="${oy}" x2="${bx + bw*0.04}" y2="${by + bw*0.80}" stroke="url(#${uid}-ray)" stroke-width="${bw*0.024}" stroke-linecap="round"/>
+      <line x1="${ox}" y1="${oy}" x2="${bx + bw*0.14}" y2="${by + bw*0.94}" stroke="url(#${uid}-ray)" stroke-width="${bw*0.026}" stroke-linecap="round"/>
+      <line x1="${ox}" y1="${oy}" x2="${bx + bw*0.24}" y2="${by + bw*1.03}" stroke="url(#${uid}-ray)" stroke-width="${bw*0.02}" stroke-linecap="round"/>
+      <line x1="${ox}" y1="${oy}" x2="${bx + bw*0.32}" y2="${by + bw*1.08}" stroke="url(#${uid}-ray)" stroke-width="${bw*0.015}" stroke-linecap="round"/>
+    </g>
+    <!-- 光源处爆发亮点 -->
+    <ellipse cx="${ox}" cy="${oy}" rx="${bw*0.10}" ry="${bw*0.13}" fill="url(#${uid}-burst)" filter="url(#${uid}-blur)"/>
+  </g>
+
+  <!-- 白色窗口 -->
+  <rect x="${wx}" y="${wy}" width="${ww}" height="${wh}" rx="${wr}" fill="#ffffff"/>
+
+  <!-- 交界羽化：在白窗左下角与光束衔接处叠柔光，融合硬边 -->
+  <g clip-path="url(#${uid}-clip)">
+    <ellipse cx="${ox}" cy="${oy}" rx="${bw*0.18}" ry="${bw*0.18}"
+             fill="url(#${uid}-seam)" filter="url(#${uid}-blur)" opacity="0.95"/>
+    <ellipse cx="${ox - bw*0.04}" cy="${oy + bw*0.04}" rx="${bw*0.10}" ry="${bw*0.10}"
+             fill="url(#${uid}-seam)" filter="url(#${uid}-blurBig)"/>
+  </g>
+</svg>`;
+}
+
+/* 横版组合：图标 + 数界文字 */
+function lockupSVG() {
+  const icon = logoSVG(160, {});
+  return `<div style="display:flex;align-items:center;gap:28px;">
+    ${icon}
+    <div style="display:flex;flex-direction:column;line-height:1;">
+      <div style="font-size:58px;font-weight:800;letter-spacing:2px;background:linear-gradient(120deg,#0A0A0B,#2E9BFF);-webkit-background-clip:text;background-clip:text;color:transparent;">数界</div>
+      <div style="font-size:15px;font-weight:600;letter-spacing:4px;color:#8e8e93;margin-top:10px;">DIGITAL REALM</div>
+    </div>
+  </div>`;
+}
+
+// 渲染
+document.getElementById('main-light').innerHTML = logoSVG(220, {});
+document.getElementById('main-dark').innerHTML  = logoSVG(220, {});
+document.getElementById('main-mono').innerHTML  = logoSVG(220, { mono: true });
+document.getElementById('lockup').innerHTML     = lockupSVG();
+
+document.getElementById('app-dark').innerHTML  = logoSVG(120, {});
+document.getElementById('app-blue').innerHTML  = logoSVG(120, {});
+document.getElementById('app-white').innerHTML = logoSVG(120, {});
+document.getElementById('app-sm').innerHTML    = logoSVG(60,  {});
+document.getElementById('app-xs').innerHTML    = logoSVG(40,  {});
+
+/* ============ 下载工具 ============ */
+function svgToPng(svgString, size, filename) {
+  const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const img = new Image();
+  img.onload = function () {
+    const c = document.createElement('canvas');
+    c.width = size; c.height = size;
+    const ctx = c.getContext('2d');
+    ctx.drawImage(img, 0, 0, size, size);
+    URL.revokeObjectURL(url);
+    const a = document.createElement('a');
+    a.download = filename;
+    a.href = c.toDataURL('image/png');
+    a.click();
+  };
+  img.src = url;
+}
+function downloadMain() { svgToPng(logoSVG(1024, {}), 1024, '数界_主标识_1024.png'); }
+function downloadIcon() { svgToPng(logoSVG(1024, {}), 1024, '数界_AppIcon_1024.png'); }
+function downloadSVG() {
+  const blob = new Blob([logoSVG(1024, {})], { type: 'image/svg+xml;charset=utf-8' });
+  const a = document.createElement('a');
+  a.download = '数界_主标识.svg';
+  a.href = URL.createObjectURL(blob);
+  a.click();
+}
+</script>
+</body>
+</html>

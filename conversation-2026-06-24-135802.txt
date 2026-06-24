@@ -1,0 +1,7 @@
+ ▐▛███▜▌   Claude Code v2.1.187
+▝▜█████▛▘  Opus 4.8 (1M context) · API Usage Billing
+  ▘▘ ▝▝    D:\Project\DW
+
+
+❯ /model 
+  ⎿  Kept model as Opus 4.8 (1M context) (default)

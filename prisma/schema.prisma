@@ -1,0 +1,140 @@
+// 数码社区数据模型定义
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// 用户模型 — 统一来源：帖子作者、推荐用户、消息发送者、当前用户
+model User {
+  id             Int      @id @default(autoincrement())
+  avatar         String   // 单字符头像文字，如 "S"
+  avatarGradient String?  // CSS 渐变色，可为空
+  name           String
+  bio            String?
+  followers      Int      @default(0)
+  followerCount  Int      @default(0)
+  followingCount Int      @default(0)
+  postCount      Int      @default(0)
+  createdAt      DateTime @default(now())
+
+  posts       Post[]
+  sentMessages     Message[] @relation("MessageSender")
+  receivedMessages Message[] @relation("MessageRecipient")
+}
+
+// 帖子模型 — 对应 HomePage postsData
+model Post {
+  id       Int     @id @default(autoincrement())
+  title    String
+  content  String
+  meta     String? // 显示用字符串，如 "3小时前 · 1000阅读"
+  likes    Int     @default(0)
+  comments Int     @default(0)
+  liked    Boolean @default(false)
+  images   Int     @default(0) // 图片数量（当前只用长度）
+  createdAt DateTime @default(now())
+
+  authorId   Int
+  author     User     @relation(fields: [authorId], references: [id])
+
+  categoryId Int?
+  category   Category? @relation(fields: [categoryId], references: [id])
+
+  tags PostTag[]
+}
+
+// 帖子-标签关联表
+model PostTag {
+  id     Int    @id @default(autoincrement())
+  postId Int
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    String
+}
+
+// 分类模型 — 消除 CategoryBar 和 PostPage 的重复定义
+model Category {
+  id    Int    @id @default(autoincrement())
+  key   String @unique // "phone", "computer" 等
+  label String         // "手机", "电脑" 等
+
+  posts Post[]
+}
+
+// 热门话题 — 对应 SearchPage trendingTopics
+model TrendingTopic {
+  id    Int    @id @default(autoincrement())
+  rank  Int
+  title String
+  hot   String // 显示用字符串，如 "🔥 12.5万 讨论"
+}
+
+// 热门标签 — 对应 SearchPage hotTags
+model Tag {
+  id  Int    @id @default(autoincrement())
+  tag String @unique // "iPhone", "Mac" 等
+}
+
+// 最近搜索 — 对应 SearchPage recentSearches
+model RecentSearch {
+  id        Int      @id @default(autoincrement())
+  keyword   String
+  createdAt DateTime @default(now())
+}
+
+// 收藏夹模型
+model FavoriteCollection {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  name      String
+  createdAt DateTime @default(now())
+
+  favorites Favorite[]
+}
+
+// 收藏模型
+model Favorite {
+  id           Int               @id @default(autoincrement())
+  userId       Int
+  postId       Int
+  collectionId Int               @default(1)
+  createdAt    DateTime          @default(now())
+
+  collection   FavoriteCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+}
+
+// 浏览历史模型
+model ViewHistory {
+  id       Int      @id @default(autoincrement())
+  userId   Int
+  postId   Int
+  viewedAt DateTime @default(now())
+}
+
+// 评论模型
+model Comment {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  content   String
+  createdAt DateTime @default(now())
+}
+
+// 消息模型 — 对应 MessagesPage messages
+model Message {
+  id      Int    @id @default(autoincrement())
+  preview String
+  time    String // 显示用字符串，如 "3分钟前"
+  badge   Int?   // 未读数，可为空
+  type    String @default("notification") // "like", "comment", "follow", "system"
+
+  senderId    Int
+  sender      User  @relation("MessageSender", fields: [senderId], references: [id])
+
+  recipientId Int
+  recipient   User  @relation("MessageRecipient", fields: [recipientId], references: [id])
+}

@@ -1,0 +1,72 @@
+
+<svg width="1024" height="1024" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gn80kdo-body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d1d20"/>
+      <stop offset="55%" stop-color="#0a0a0b"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="gn80kdo-beam" x1="452" y1="564" x2="196" y2="772" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"  stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="12%" stop-color="#7FD4FF" stop-opacity="0.98"/>
+      <stop offset="45%" stop-color="#2E9BFF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#2E9BFF" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="gn80kdo-ray" x1="452" y1="564" x2="196" y2="772" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#7FD4FF" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#2E9BFF" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gn80kdo-burst" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#7FD4FF"/>
+      <stop offset="100%" stop-color="#2E9BFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="gn80kdo-seam" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="38%" stop-color="#7FD4FF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#2E9BFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="gn80kdo-blur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+    <filter id="gn80kdo-blurBig" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="48"/>
+    </filter>
+    <clipPath id="gn80kdo-clip">
+      <rect x="100" y="100" width="800" height="800" rx="188"/>
+    </clipPath>
+  </defs>
+
+  <!-- 黑色实心主体 -->
+  <rect x="100" y="100" width="800" height="800" rx="188" fill="url(#gn80kdo-body)"/>
+
+  <!-- 黑块内部的光（裁切在主体内） -->
+  <g clip-path="url(#gn80kdo-clip)">
+    <!-- 光锥外发光（强、宽） -->
+    <path d="M 452 564 L 60 580 Q 116 980.0000000000001   356 956 Z" fill="url(#gn80kdo-beam)" filter="url(#gn80kdo-blurBig)" opacity="0.95"/>
+    <!-- 光锥主体 -->
+    <path d="M 452 564 L 60 580 Q 116 980.0000000000001   356 956 Z" fill="url(#gn80kdo-beam)" filter="url(#gn80kdo-blur)"/>
+    <!-- 从顶点放射的亮线（在左↘下之间扇形发散） -->
+    <g filter="url(#gn80kdo-blur)">
+      <line x1="452" y1="564" x2="76" y2="612" stroke="url(#gn80kdo-ray)" stroke-width="12.8" stroke-linecap="round"/>
+      <line x1="452" y1="564" x2="132" y2="740" stroke="url(#gn80kdo-ray)" stroke-width="19.2" stroke-linecap="round"/>
+      <line x1="452" y1="564" x2="212" y2="852" stroke="url(#gn80kdo-ray)" stroke-width="20.8" stroke-linecap="round"/>
+      <line x1="452" y1="564" x2="292" y2="924" stroke="url(#gn80kdo-ray)" stroke-width="16" stroke-linecap="round"/>
+      <line x1="452" y1="564" x2="356" y2="964" stroke="url(#gn80kdo-ray)" stroke-width="12" stroke-linecap="round"/>
+    </g>
+    <!-- 光源处爆发亮点 -->
+    <ellipse cx="452" cy="564" rx="80" ry="104" fill="url(#gn80kdo-burst)" filter="url(#gn80kdo-blur)"/>
+  </g>
+
+  <!-- 白色窗口 -->
+  <rect x="452" y="244" width="320" height="320" rx="75.19999999999999" fill="#ffffff"/>
+
+  <!-- 交界羽化：在白窗左下角与光束衔接处叠柔光，融合硬边 -->
+  <g clip-path="url(#gn80kdo-clip)">
+    <ellipse cx="452" cy="564" rx="144" ry="144"
+             fill="url(#gn80kdo-seam)" filter="url(#gn80kdo-blur)" opacity="0.95"/>
+    <ellipse cx="420" cy="596" rx="80" ry="80"
+             fill="url(#gn80kdo-seam)" filter="url(#gn80kdo-blurBig)"/>
+  </g>
+</svg>
