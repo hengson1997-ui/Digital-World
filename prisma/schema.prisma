@@ -29,14 +29,15 @@ model User {
 
 // 帖子模型 — 对应 HomePage postsData
 model Post {
-  id       Int     @id @default(autoincrement())
-  title    String
-  content  String
-  meta     String? // 显示用字符串，如 "3小时前 · 1000阅读"
-  likes    Int     @default(0)
-  comments Int     @default(0)
-  liked    Boolean @default(false)
-  images   Int     @default(0) // 图片数量（当前只用长度）
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  meta      String?  // 显示用字符串，如 "3小时前 · 1000阅读"
+  likes     Int      @default(0)
+  comments  Int      @default(0)
+  liked     Boolean  @default(false)
+  images    Int      @default(0) // 图片数量（当前只用长度）
+  viewCount Int      @default(0) // 浏览量
   createdAt DateTime @default(now())
 
   authorId   Int
